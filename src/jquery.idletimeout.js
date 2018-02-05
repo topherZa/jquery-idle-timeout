@@ -47,7 +47,8 @@ var IdleTimeout = (function ($, win) {
 
         // bind continue link
         resume.bind("click", function (e) {
-            IdleTimeout.Resume(e);
+            e.preventDefault();
+            IdleTimeout.Resume();
         });
     };
 
@@ -90,7 +91,6 @@ var IdleTimeout = (function ($, win) {
     };
 
     var _keepAlive = function (recurse) {
-        //var options = options;
 
         //Reset the title to what it was.
         document.title = title;
@@ -125,10 +125,7 @@ var IdleTimeout = (function ($, win) {
             }
         });
     };
-    var _resume = function (e) {
-        //var options = this.options
-        if (e !== undefined)
-            e.preventDefault();
+    var _resume = function () {
         if (options !== undefined) {
             win.clearInterval(countdown); // stop the countdown
             countdownOpen = false; // stop countdown
